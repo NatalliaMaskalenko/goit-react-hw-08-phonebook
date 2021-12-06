@@ -1,0 +1,2 @@
+(this["webpackJsonpgoit-react-hw-08-phonebook"]=this["webpackJsonpgoit-react-hw-08-phonebook"]||[]).push([[1],{101:function(t,e,n){"use strict";n.r(e);n(0);var i=n(1),o={container:{minHeight:"calc(100vh - 50px)",display:"flex",justifyContent:"center"},title:{fontWeight:900,color:"#E84A5F",fontSize:48}};e.default=function(){return Object(i.jsx)("div",{style:o.container,children:Object(i.jsx)("h1",{style:o.title,children:"To be always there. "})})}}}]);
+//# sourceMappingURL=HomePage.3c128153.chunk.js.map
