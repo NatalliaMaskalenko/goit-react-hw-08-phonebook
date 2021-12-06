@@ -12,7 +12,7 @@ export const deleteRequest = createAction('contact/deleteRequest');
 export const deleteSuccess = createAction('contact/deleteSuccess');
 export const deleteError = createAction('contact/deleteError');
 
-export const changeFilter = createAction('contact/cgangeFilter');
+export const changeFilter = createAction('contact/changeFilter');
 
 // export const deleteContact = createAction('contact/Delete');
 

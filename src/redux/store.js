@@ -9,19 +9,26 @@ import {
 } from 'redux-persist';
 import logger from "redux-logger";
 import phonebookReducer from './phonebook/phonebook-reducer';
+import authReducer from './auth/auth-slice';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 
 // import { composeWithDevTools } from 'redux-devtools-extension';
 
-
-const persistConfig = {
-  key: 'contacts',
+const AuthPersistConfig = {
+  key: 'auth',
   storage,
-}
+  whitelist: ['token', 'user'],
+};
+
+const ContactsPersistConfig = {
+  key: 'Contacts',
+  storage,
+};
 
 const rootReduser = combineReducers({
-    contacts: persistReducer(persistConfig, phonebookReducer),
+  contacts: persistReducer(ContactsPersistConfig, phonebookReducer),
+  auth: persistReducer(AuthPersistConfig, authReducer),  
 });
 
 export const store = configureStore({
@@ -34,10 +41,8 @@ export const store = configureStore({
     }).concat(logger),
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
-// export default {store, persistor};
 
-export default {store};
 
 
