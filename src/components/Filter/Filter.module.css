@@ -19,3 +19,6 @@
 .filter__input:hover {
   border: 2px solid black;
 }
+.text {
+  color: #00ffff;
+}

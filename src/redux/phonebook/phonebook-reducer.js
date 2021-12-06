@@ -1,78 +1,41 @@
-import { combineReducers } from "redux";
-import { createReducer } from "@reduxjs/toolkit";
+
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
+import { changeFilter } from './phonebook-actions';
 import {
-    addRequest,
-    addSuccess,
-    addError,
-    deleteRequest,
-    deleteSuccess,
-    deleteError,
-    changeFilter,
-    fetchContactsRequest,
-    fetchContactsSuccess,
-    fetchContactsError,
-} from './phonebook-actions';
-import { fetchContacts, addContact, deleteContact } from './phonebook-operations';
+    fetchContacts,
+    deleteContact,
+    addContact,
+} from '../Phonebook/phonebook-operation';
 
-
-const items = createReducer([], {
+export const contactItems = createReducer([], {
     [fetchContacts.fulfilled]: (_, { payload }) => payload,
-    [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
-    [deleteContact.fulfilled]: (state, { payload }) => state.filter(({id}) => id !== payload),    
+    [addContact.fulfilled]: (state, { payload }) => {
+        return [payload, ...state];
+    },
+    [deleteContact.fulfilled]: (state, { payload }) =>
+        state.filter(({ id }) => id !== payload),
+});
+const filter = createReducer('', {
+    [changeFilter]: (_, { payload }) => payload,
 });
 
-const loading = createReducer(false, {
+export const loadingProcess = createReducer(false, {
+    [fetchContacts.pending]: () => true,
+    [fetchContacts.fulfilled]: () => false,
+    [fetchContacts.rejected]: () => false,
     [addContact.pending]: () => true,
     [addContact.fulfilled]: () => false,
     [addContact.rejected]: () => false,
     [deleteContact.pending]: () => true,
     [deleteContact.fulfilled]: () => false,
     [deleteContact.rejected]: () => false,
-    [fetchContacts.pending]: () => true,
-    [fetchContacts.fulfilled]: () => false,
-    [fetchContacts.rejected]: ()=> false,
 });
-
-const filter = createReducer('', {
-     [changeFilter]: (_, { payload }) => payload,
-});
-
-
 
 export default combineReducers({
-    items,
+    contactItems,
     filter,
-    loading,
+    loadingProcess,
 });
-
-// const items = createReducer([], {
-//     [fetchContactsSuccess]: (state, { payload }) => payload,
-//     [addSuccess]: (state, { payload }) => [payload, ...state],
-//     [deleteSuccess]: (state, { payload }) => state.filter(({id}) => id !== payload),    
-// });
-
-// const items = (state = initilItems, {type, payload}) => {
-//     switch (type) {
-//         case types.ADD:
-//             return [payload, ...state];
-        
-//         case types.DELETE:
-//             return state.filter(({id}) => id !== payload);
-  
-//         default:    
-//             return state;
-//     };   
-// };
-
-// const filter = (state = '', {type, payload}) => {
-//     switch (type) {
-//         case types.CHANGE_FILTER:
-//             return payload
-               
-//         default:
-//             return state;
-//     };   
-// };
-
 
 

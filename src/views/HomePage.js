@@ -1,14 +1,23 @@
-// import s from './App.module.css'
+import React from 'react';
 
-
-
-export default function HomePage() {
-    return (
-      <div>
-        <h1>To be always there.</h1>
+const styles = {
+    container: {
+        minHeight: 'calc(100vh - 50px)',
+        display: 'flex',        
+        justifyContent: 'center',
         
-      </div>
-  );
+    },
+    title: {
+        fontWeight: 900,
+        color:'#E84A5F',
+        fontSize: 48,        
+    },
 };
-   
-// https://connections-api.herokuapp.com/
+
+const HomePage = () => (
+    <div style={styles.container}>
+        <h1 style={styles.title}>To be always there. </h1>
+    </div>
+);
+
+export default HomePage;
